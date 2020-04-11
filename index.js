@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const db = mongoose.connect("");
+const db = mongoose.connect(
+  "mongodb+srv://codedpills:NvIBGwmq9m7ABuSX@accountapi-unvad.mongodb.net/accountdb?retryWrites=true&w=majority"
+);
 
 const PORT = process.env.PORT || 5000;
 
