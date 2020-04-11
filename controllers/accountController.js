@@ -25,11 +25,20 @@ const accountController = () => {
       res.status(201).json(account);
     });
   };
-  const getAccount = (req, res) => {
-      
+  const getAccounts = (req, res) => {
+    const query = {};
+    if (req.query.accountType) {
+      query.accountType = req.query.accountType;
+    }
+    Account.find(query, (err, accounts) => {
+      if (err) {
+        return res.status(400).send(`Problem fetching accounts! ${err}`);
+      }
+      return res.status(200).json(accounts);
+    });
   };
 
-  return { postAccount, getAccount };
+  return { postAccount, getAccounts };
 };
 
 module.exports = accountController;
