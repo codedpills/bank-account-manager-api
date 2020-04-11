@@ -13,7 +13,8 @@ const routes = () => {
   accountRouter
     .route("/accounts/:accountId")
     .get(accountController.getAccount)
-    .put();
+    .put(accountController.editAccount)
+    .delete(accountController.deleteAccount);
 
   return accountRouter;
 };
