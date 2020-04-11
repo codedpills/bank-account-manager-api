@@ -47,8 +47,32 @@ exports.findAccountById = (req, res, next) => {
       req.account = account;
       return next();
     }
-    return req.sendStatus(404);
+    return res.sendStatus(404);
   });
 };
 
 exports.getAccount = (req, res) => res.status(200).json(req.account);
+
+exports.editAccount = (req, res) => {
+  const { account } = req;
+  account.bankName = req.body.bankName;
+  account.bankBranch = req.body.bankBranch;
+  account.accountName = req.body.accountName;
+  account.accountNumber = req.body.accountNumber;
+  account.accountType = req.body.accountType;
+  account.save((err, account) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    res.status(200).json(account);
+  });
+};
+
+exports.deleteAccount = (req, res) => {
+  req.account.remove((err) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(201).send("Account deleted successfully!");
+  });
+};
