@@ -5,13 +5,16 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const db = mongoose.connect(
-  "mongodb+srv://codedpills:NvIBGwmq9m7ABuSX@accountapi-unvad.mongodb.net/accountdb?retryWrites=true&w=majority"
+  "mongodb+srv://codedpills:wunAlmKiyoapbGOw@accountapi-unvad.mongodb.net/accountdb?retryWrites=true&w=majority"
 );
 
 const PORT = process.env.PORT || 5000;
+const accountRouter = require("./routes/accountRouter")();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use("/api", accountRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the bank account API");
