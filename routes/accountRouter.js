@@ -8,7 +8,7 @@ const routes = () => {
     accountRouter
     .route('/account')
     .post(accountController.postAccount)
-    .get(accountController.getAccount);
+    .get(accountController.getAccounts);
 
     return accountRouter;
 }
