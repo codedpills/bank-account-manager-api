@@ -1,6 +1,5 @@
 const express = require("express");
 
-const Account = require("../models/accountModel");
 const accountController = require("../controllers/accountController");
 
 const routes = () => {
